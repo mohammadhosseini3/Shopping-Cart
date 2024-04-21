@@ -1,23 +1,31 @@
-import React from 'react'
-import { View,Text,StyleSheet } from 'react-native'
+import React, { useState } from 'react';
+import { View,Text,StyleSheet,FlatList } from 'react-native';
+import Header from "./components/Header";
+import uuid from "uuid4"
+import ListItem from "./components/ListItem"
 
 const Test = () => {
+  const [items,setItems] = useState([
+    {id: uuid, text: 'Milk'},
+    {id: uuid, text: 'Water'},
+    {id: uuid, text: 'Cola'},
+    {id: uuid, text: 'Juice'}
+  ])
   return(
     <View style={styles.container}>
-      <Text style={styles.text}>hello world</Text>
+      <Header></Header>
+      <FlatList
+        data = {items}
+        renderItem = {({item}) => <ListItem item = {item}/>}
+      />
+        
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container : {
-    justifyContent : 'center',
-    alignItems : 'center',
-    flex:1
-  },
-  text : {
-    fontSize : 40,
-    color : 'darkblue'
+    flex : 1
   }
 })
 
